@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:habit_tracking_flutter/ui/components/daily_summary_card.dart';
+import 'package:habit_tracking_flutter/ui/components/habit_card_list.dart';
 import 'package:habit_tracking_flutter/ui/components/timeline_view.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -25,13 +26,20 @@ class MainPage extends HookConsumerWidget {
                     onSelectedDate: (date) => selectedDate.value = date,
                   ),
                   DailySummaryCard(
-                      completedTasks: 0,
-                      totalTasks: 0,
-                      date: selectedDate.value.day.toString() +
-                          '/' +
-                          selectedDate.value.month.toString() +
-                          '/' +
-                          selectedDate.value.year.toString())
+                      completedTasks: 8,
+                      totalTasks: 10,
+                      date:
+                          '${selectedDate.value.day}/${selectedDate.value.month}/${selectedDate.value.year}'),
+                  SizedBox(
+                    height: 16,
+                  ),
+                  const Text('Habits'),
+                  SizedBox(
+                    height: 16,
+                  ),
+                  HabitCardList(
+                    selectedDate: selectedDate.value,
+                  )
                 ],
               ))),
     );
