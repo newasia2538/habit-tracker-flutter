@@ -1,9 +1,16 @@
 import 'package:flex_color_scheme/flex_color_scheme.dart';
 import 'package:flutter/material.dart';
+import 'package:habit_tracking_flutter/data/database/database.dart';
+import 'package:habit_tracking_flutter/data/providers/database_provider.dart';
 import 'package:habit_tracking_flutter/ui/main_page.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 void main() {
-  runApp(const MyApp());
+  WidgetsFlutterBinding.ensureInitialized();
+  final database = AppDatabase();
+  runApp(ProviderScope(overrides: [
+    dataBaseProvider.overrideWithValue(database),
+  ], child: MyApp()));
 }
 
 class MyApp extends StatelessWidget {

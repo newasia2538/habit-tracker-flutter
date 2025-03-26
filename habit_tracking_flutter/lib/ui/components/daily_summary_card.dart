@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'package:flutter/material.dart';
 
 class DailySummaryCard extends StatelessWidget {
@@ -14,6 +16,7 @@ class DailySummaryCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final colorScheme = Theme.of(context).colorScheme;
+    var progress = completedTasks > 0 ? completedTasks / totalTasks : 0;
     return Card(
       elevation: 8,
       shadowColor: colorScheme.shadow.withOpacity(0.2),
@@ -61,7 +64,7 @@ class DailySummaryCard extends StatelessWidget {
                   ClipRRect(
                     borderRadius: BorderRadius.circular(12),
                     child: LinearProgressIndicator(
-                      value: completedTasks / totalTasks,
+                      value: progress.toDouble(),
                       minHeight: 8,
                       backgroundColor: colorScheme.surface.withOpacity(0.2),
                       valueColor: AlwaysStoppedAnimation(colorScheme.primary),
